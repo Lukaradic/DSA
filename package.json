@@ -1,0 +1,23 @@
+{
+  "name": "ds_algo",
+  "version": "1.0.0",
+  "description": "Data Structure and Algo template ",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Luka Radic",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.3"
+  },
+  "jest": {
+    "verbose": false
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "babel-jest": "^28.1.3"
+  }
+}
