@@ -31,8 +31,21 @@ describe('BST', () => {
         expect(tree.find(135)).toBe(true);
         expect(tree.find(145)).toBe(true);
         expect(tree.find(200)).toBe(false);
-
-
-
     });
+
+    it('test searches ', () => {
+        tree.insert(10);
+        tree.insert(6);
+        tree.insert(15);
+        tree.insert(3);
+        tree.insert(8);
+        tree.insert(20);
+
+        // expect(tree.bfs()).toEqual([10, 6, 15, 3, 8, 20]);
+        // console.log(tree.dfsPreOrder()); // [10, 6, 3, 8, 15, 20];
+        // console.log(tree.dfsPostOrder()); // [3, 8, 6, 20, 15, 10];
+        // console.log(tree.dfsInOrder()); // [3, 6, 8, 10, 15, 20];
+    })
+
+    // it()
 })

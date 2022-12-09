@@ -40,9 +40,9 @@ class BinarySearchTree {
 
     find(val) {
         let curr = this.root;
-        while(curr) {
-            if(curr.val === val) return true;
-            if(val > curr.val ) {
+        while (curr) {
+            if (curr.val === val) return true;
+            if (val > curr.val) {
                 curr = curr.right;
             } else {
                 curr = curr.left;
@@ -50,6 +50,69 @@ class BinarySearchTree {
         }
         return false;
     }
+
+    bfs() {
+        //  if it was a regular tree, we would just loop through the node to see all the children instead of hardcoding .left .right
+        let queue = [];
+        let data = [];
+
+        queue.push(this.root);
+        while (queue.length) {
+            let node = queue[0];
+            data.push(node);
+            if (node.left) queue.push(node.left);
+            if (node.right) queue.push(node.right);
+            queue.shift();
+        }
+        return data;
+    }
+
+    //  3 types
+    //  preOrder
+    //  postOrder
+    //  inOrder
+
+    //  visit node first, then go to its left/right
+    dfsPreOrder() {
+
+        let data = [];
+        let current = this.root;
+        function traverse(node) {
+            data.push(node);
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
+
+    //  go to most left, then visit the node
+    dfsPostOrder() {
+        let data = [];
+        let current = this.root;
+        function traverse(node) {
+            if (node.left) traverse(node.left);
+            if (node.right) traverse(node.right);
+            data.push(node);
+        }
+        traverse(current);
+        return data;
+    }
+
+    //  visit left side first, then right side
+    dfsInOrder() {
+        let data = [];
+        let current = this.root;
+        function traverse(node) {
+            if (node.left) traverse(node.left);
+            data.push(node);
+            if (node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
+
+
 }
 
 //  root = top node
@@ -64,6 +127,12 @@ class BinarySearchTree {
 //  BIG 0 
 //  insert = Big0(log n) // worst = Big0(n) => if the tree is only one sided (adding only larger/smaller nodes);
 //  find = Big0(log n) // worst = Big0n(n) => if the tree is only one sided and we are looking for the last node
+
+//  bfs = visiting each sibling before going to the child (horizontal view);
+//  dfs = vertical search
+//  time complexity is the same for BFS & DFS space complexity depends on the type of the tree;
+//  use bfs when tree is narrow and has a lot of depth
+//  use dfs when tree is wide and has les depth
 
 module.exports = BinarySearchTree;
 
