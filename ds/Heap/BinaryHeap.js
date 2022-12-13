@@ -40,6 +40,59 @@ class MaxBinaryHeap {
         }
         return this.values;
     }
+
+    //  removes the root
+    //  swaps the root for the last element added
+    //  then it compares the root to its chilrend and if root is bigger than children end the method
+    //  if not swap the root to the higher value child
+    //  repeat
+
+    getLeftChildIndex(index) {
+        return Math.floor(2 * index + 1 );
+    } 
+
+    getRightChildIndex(index) {
+        return Math.floor(2 * index + 2 );
+    } 
+
+    extractMax() {
+        let returnValue = this.values[0];
+        let end = this.values.pop();
+        this.values[0] = end;
+        this.sinkDown();
+        return returnValue;
+    }
+
+    sinkDown() {
+        let index = 0;
+        let element = this.values[0];
+        this.values[0] = element;
+        let toLoop = true;
+
+        while(toLoop) {
+            let leftIndex = 2 * index + 1;
+            let rightIndex = 2 * index + 2;
+            let left = this.values[leftIndex];
+            let right = this.values[rightIndex];
+
+            if(left && left > element) {
+                if(right && right > element && right > left) {
+                    [this.values[index], this.values[rightIndex]] = [this.values[rightIndex], this.values[index]];
+                    index = rightIndex;
+                } else {
+                    [this.values[index], this.values[leftIndex]] = [this.values[leftIndex], this.values[index]];
+                    index = leftIndex;
+                }
+            } else if(right && right > element) {
+                [this.values[index], this.values[rightIndex]] = [this.values[rightIndex], this.values[index]];
+                index = rightIndex;
+            } else {
+                toLoop = false;
+            }
+        }
+    }
+
+
 }
 
 module.exports  = MaxBinaryHeap;
