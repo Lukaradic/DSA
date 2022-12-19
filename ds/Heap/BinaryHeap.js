@@ -91,8 +91,11 @@ class MaxBinaryHeap {
             }
         }
     }
-
-
 }
+
+    //  priority queue
+    //  ds where each el has a priorty value, and el with higher priority value come first
+    //  BigO (log n) insert/delete
+    //  
 
 module.exports  = MaxBinaryHeap;
