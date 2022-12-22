@@ -1,51 +1,67 @@
 const BST = require('./BinarySearchTree');
 
 describe('BST', () => {
+
     let tree;
     beforeEach(() => {
         tree = new BST();
     })
-    it('Should insert new node', () => {
-        tree.insert(10);
-        tree.insert(12);
-        tree.insert(4);
 
-        expect(tree.root.val).toBe(10);
-        expect(tree.root.left.val).toBe(4);
-        expect(tree.root.right.val).toBe(12);
-    } );
-    it('Should find an node', () => {
+    it('inserts a value into the tree', () => {
         tree.insert(10);
-        tree.insert(12);
-        tree.insert(4);
         tree.insert(5);
-        tree.insert(17);
-        tree.insert(145);
-        tree.insert(135);
-        tree.insert(235);
-
-
-        expect(tree.find(4)).toBe(true);
-        expect(tree.find(17)).toBe(true);
-        expect(tree.find(20)).toBe(false);
-        expect(tree.find(135)).toBe(true);
-        expect(tree.find(145)).toBe(true);
-        expect(tree.find(200)).toBe(false);
-    });
-
-    it('test searches ', () => {
-        tree.insert(10);
-        tree.insert(6);
         tree.insert(15);
         tree.insert(3);
-        tree.insert(8);
-        tree.insert(20);
+        tree.insert(7);
+        tree.insert(13);
+        tree.insert(17);
 
-        // expect(tree.bfs()).toEqual([10, 6, 15, 3, 8, 20]);
-        // console.log(tree.dfsPreOrder()); // [10, 6, 3, 8, 15, 20];
-        // console.log(tree.dfsPostOrder()); // [3, 8, 6, 20, 15, 10];
-        // console.log(tree.dfsInOrder()); // [3, 6, 8, 10, 15, 20];
-    })
+        expect(tree.root.value).toBe(10);
+        expect(tree.root.left.value).toBe(5);
+        expect(tree.root.right.value).toBe(15);
+        expect(tree.root.left.left.value).toBe(3);
+        expect(tree.root.left.right.value).toBe(7);
+        expect(tree.root.right.left.value).toBe(13);
+        expect(tree.root.right.right.value).toBe(17);
+    });
+    it('Should find an node', () => {
 
-    // it()
+        tree.insert(10);
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(3);
+        tree.insert(7);
+        tree.insert(13);
+        tree.insert(17);
+
+        expect(tree.find(5)).toEqual({ value: 5, left: {value: 3, left: null, right: null}, right: { value: 7, left: null, right: null}});
+        expect(tree.find(10)).toEqual({ value: 10, left: { value: 5, left: { value: 3, left: null, right: null }, right: { value: 7, left: null, right: null } }, right: { value: 15, left: { value: 13, left: null, right: null }, right: { value: 17, left: null, right: null } } });
+        expect(tree.find(17)).toEqual({ value: 17, left: null, right: null });
+
+    });
+    it('returns null if value is not found in the tree', () => {
+
+        tree.insert(10);
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(3);
+        tree.insert(7);
+        tree.insert(13);
+        tree.insert(17);
+
+        expect(tree.find(2)).toBe(null);
+        expect(tree.find(20)).toBe(null);
+    });
+    
+    it('traverses the tree in breadth-first order', () => {
+        tree.insert(10);
+        tree.insert(5);
+        tree.insert(15);
+        tree.insert(3);
+        tree.insert(7);
+        tree.insert(13);
+        tree.insert(17);
+
+        expect(tree.bfs().map(el => el.value)).toEqual([10, 5, 15, 3, 7, 13, 17]);
+      });
 })

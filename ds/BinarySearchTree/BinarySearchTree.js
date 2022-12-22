@@ -1,6 +1,6 @@
 class Node {
-    constructor(val) {
-        this.val = val;
+    constructor(value) {
+        this.value = value;
         this.left = null;
         this.right = null;
     }
@@ -11,44 +11,44 @@ class BinarySearchTree {
         this.root = null;
     }
 
-    insert(val) {
-        let node = new Node(val);
+    insert(value) {
+        // If the tree is empty, create a new node and return it.
         if (!this.root) {
-            this.root = node;
-        } else {
-            let curr = this.root;
-            while (curr) {
-                if (node.val > curr.val) {
-                    if (curr.right) {
-                        curr = curr.right;
-                    } else {
-                        curr.right = node;
-                        break;
-                    }
-                } else {
-                    if (curr.left) {
-                        curr = curr.left;
-                    } else {
-                        curr.left = node;
-                        break;
-                    }
+            this.root = new Node(value);
+            return this;
+        }
+
+        // Find the correct position to insert the new node.
+        let current = this.root;
+        while (true) {
+            if (value < current.value) {
+                if (!current.left) {
+                    current.left = new Node(value);
+                    break;
                 }
+                current = current.left;
+            } else {
+                if (!current.right) {
+                    current.right = new Node(value);
+                    break;
+                }
+                current = current.right;
             }
         }
         return this;
     }
 
-    find(val) {
+    find(value) {
         let curr = this.root;
         while (curr) {
-            if (curr.val === val) return true;
-            if (val > curr.val) {
+            if (curr.value === value) return curr;
+            if (value > curr.value) {
                 curr = curr.right;
             } else {
                 curr = curr.left;
             }
         }
-        return false;
+        return null;
     }
 
     bfs() {

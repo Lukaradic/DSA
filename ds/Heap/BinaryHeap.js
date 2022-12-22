@@ -29,6 +29,7 @@ class MaxBinaryHeap {
     getParentIndex(index) {
         return Math.floor((index - 1) / 2);
     }
+    
     insert(val) {
         this.values.push(val);
         let index = this.values.length - 1;
