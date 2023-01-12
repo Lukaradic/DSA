@@ -84,4 +84,27 @@ describe('GraphList', () => {
 
     });
 
+    it('Should dfs and return all vertexes', () => {
+        graph.addVertex('Belgrade');
+        graph.addVertex('Berlin');
+        graph.addVertex('Budapest');
+        graph.addVertex('Bern');
+        graph.addVertex('Bangkok');
+
+        graph.addEdge('Belgrade', 'Berlin');
+        graph.addEdge('Belgrade', 'Bern');
+        graph.addEdge('Berlin', 'Bern');
+        graph.addEdge('Belgrade', 'Budapest');
+        graph.addEdge('Bern', 'Budapest');
+        graph.addEdge('Berlin', 'Bangkok');
+
+
+        expect(graph.dfs('Belgrade')).toContain('Belgrade');
+        expect(graph.dfs('Belgrade')).toContain('Berlin');
+        expect(graph.dfs('Belgrade')).toContain('Bangkok');
+        expect(graph.dfs('Belgrade')).toContain('Bern');
+        expect(graph.dfs('Belgrade')).toContain('Budapest');
+
+    })
+
 })
