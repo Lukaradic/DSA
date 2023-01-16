@@ -34,7 +34,7 @@ class Graph {
     dfs(vertex) {
 
         const visited = {};
-        let results = [];
+        const results = [];
         const adjecencyList = this.adjecencyList;
 
         (function dfsHelper(vertex) {
@@ -50,6 +50,26 @@ class Graph {
         })(vertex)
         return results;
 
+    }
+    //  Goes from starting point to each connection. Stores the connections in a queue. Repeat untill all vertexes are visited
+    bfs(vertex) {
+        const adjecencyList = this.adjecencyList;
+        const results = [];
+        const visited = {};
+        const queue = [];
+        queue.push(vertex);
+        while(queue.length) {
+            const node = queue.shift();
+            visited[node] = true;
+            results.push(node);
+            for(let element of adjecencyList[node]) {
+                if(!visited[element]) {
+                    visited[element] = true;
+                    queue.push(element);
+                } 
+            }
+        }
+        return results;
     }
 }
 

@@ -104,6 +104,27 @@ describe('GraphList', () => {
         expect(graph.dfs('Belgrade')).toContain('Bangkok');
         expect(graph.dfs('Belgrade')).toContain('Bern');
         expect(graph.dfs('Belgrade')).toContain('Budapest');
+    })
+
+    it('Should bfs and return all vertexes', () => {
+        graph.addVertex('Belgrade');
+        graph.addVertex('Berlin');
+        graph.addVertex('Budapest');
+        graph.addVertex('Bern');
+        graph.addVertex('Bangkok');
+
+        graph.addEdge('Belgrade', 'Berlin');
+        graph.addEdge('Belgrade', 'Bern');
+        graph.addEdge('Berlin', 'Bern');
+        graph.addEdge('Belgrade', 'Budapest');
+        graph.addEdge('Bern', 'Budapest');
+        graph.addEdge('Berlin', 'Bangkok');
+
+        expect(graph.bfs('Belgrade')).toContain('Belgrade');
+        expect(graph.bfs('Belgrade')).toContain('Berlin');
+        expect(graph.bfs('Belgrade')).toContain('Bangkok');
+        expect(graph.bfs('Belgrade')).toContain('Bern');
+        expect(graph.bfs('Belgrade')).toContain('Budapest');
 
     })
 
