@@ -27,10 +27,7 @@ class Graph {
         delete this.adjecencyList[vertex];
     }
 
-    // dfs
-    // bfs
-
-
+    //  
     dfs(vertex) {
 
         const visited = {};
@@ -71,6 +68,7 @@ class Graph {
         }
         return results;
     }
+    
 }
 
 
